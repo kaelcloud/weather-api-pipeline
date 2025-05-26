@@ -1,18 +1,15 @@
 pipeline {
     agent any
 
+    tools {
+        nodejs 'NodeJS' // nama yang anda letak dalam Jenkins
+    }
+
     environment {
         NODE_ENV = 'production'
     }
 
     stages {
-        stage('Clone Code') {
-            steps {
-                echo 'Cloning repository...'
-                // Repo dah di-clone automatik, jadi tak perlu buat apa2
-            }
-        }
-
         stage('Install Dependencies') {
             steps {
                 echo 'Installing dependencies...'
@@ -23,7 +20,7 @@ pipeline {
         stage('Run App') {
             steps {
                 echo 'Starting app...'
-                bat 'node index.js &'
+                bat 'node index.js'
             }
         }
     }
